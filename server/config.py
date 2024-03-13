@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_migrate import Migrate, session
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
-from model import  Truckers, Company, Load, db
+from model import  Trucker, Company, Load, db
 from dotenv import load_dotenv
 import os 
 
