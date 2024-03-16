@@ -23,7 +23,7 @@ class Trucker(db.Model, SerializerMixin):
     phone_number = db.Column(db.String)
     years_of_experience = db.Column(db.String)
 
-    loads = db.relationship('Loads', back_populates='trucker')
+    load = db.relationship('Load', back_populates='trucker')
     
 
 class Company(db.Model, SerializerMixin):
@@ -36,7 +36,7 @@ class Company(db.Model, SerializerMixin):
     location = db.Column(db.String)
     phone_number = db.Column(db.String)
 
-    loads = db.relationship('Loads', back_populates='company')
+    load = db.relationship('Load', back_populates='company')
 
 
 class Load(db.Model, SerializerMixin):
@@ -51,5 +51,5 @@ class Load(db.Model, SerializerMixin):
     trucker_id = db.Column(db.Integer, db.ForeignKey('truckers_table.id'))
     company_id = db.Column(db.Integer, db.ForeignKey('companies_table.id'))
 
-    trucker = db.relationship('Trucker', back_populates='loads')
-    company = db.relationship('Company', back_populates='loads')
+    trucker = db.relationship('Trucker', back_populates='load')
+    company = db.relationship('Company', back_populates='load')
