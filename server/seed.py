@@ -29,14 +29,14 @@ if __name__ == '__main__':
 
         # trying out faker address
         for _ in range(9):
-            t = Trucker(owner=faker.name(), vehicle=random_choice(vehicle), trailer=random_choice(trailer), location=random_choice(location), phone_number=faker.phone_number(), years_of_experience=random_choice(years_of_experience))
+            t = Trucker(username=faker.name(), password=faker.password(), owner=faker.name(), vehicle=random_choice(vehicle), trailer=random_choice(trailer), location=random_choice(location), phone_number=faker.phone_number(), years_of_experience=random_choice(years_of_experience))
             db.session.add(t)
 
         db.session.commit()
 
         print('creating company')
         for _ in range(20):
-            c = Company(company_name=faker.name(), location=faker.address(), phone_number=faker.phone_number(),)
+            c = Company(username=faker.name(), password=faker.password(),company_name=faker.name(), location=faker.address(), phone_number=faker.phone_number(),)
             db.session.add(c)
         
         db.session.commit()
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
         for _ in range(30):
             l = Load(dropoff=faker.address(), materials=random_choice(materials), weight=random_choice(weight), payout=random_choice(payout))
-            db.sesison.add(l)
+            db.session.add(l)
 
         db.session.commit()
 
