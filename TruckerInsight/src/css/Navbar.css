@@ -1,0 +1,29 @@
+nav {
+    background-color: #343a40; 
+    padding: 0.5rem 1rem;
+}
+
+nav ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    align-items: center;
+}
+
+nav ul a {
+    text-decoration: none; 
+    color: #ffffff; 
+    padding: 0.5rem 1rem;
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+nav ul a:hover,
+nav ul a.active {
+    background-color: #007bff; 
+}
+
+.custom-link {
+    margin-left: auto; 
+}
