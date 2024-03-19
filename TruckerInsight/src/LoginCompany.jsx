@@ -10,7 +10,7 @@ function LoginCompany({ currentUser, setCurrentUser }) {
     async function handleLogin(e) {
         e.preventDefault();
         const userInfo = { username, password };
-        const res = await fetch('/login/company', {
+        const res = await fetch('/api/login/company', {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',
@@ -21,7 +21,7 @@ function LoginCompany({ currentUser, setCurrentUser }) {
         if (res.ok) {
             const data = await res.json();
             setCurrentUser(data);
-            navigate('/');
+            navigate('/api');
         } else {
             alert('Invalid log in');
         }

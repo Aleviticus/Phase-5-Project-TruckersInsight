@@ -18,12 +18,14 @@ class Trucker(db.Model, SerializerMixin):
     password = db.Column(db.String)
     owner = db.Column(db.String)
     vehicle = db.Column(db.String)
-    trailer = db.Column(db.Boolean)
+    trailer = db.Column(db.String)
     location = db.Column(db.String)
     phone_number = db.Column(db.String)
     years_of_experience = db.Column(db.String)
 
     load = db.relationship('Load', back_populates='trucker')
+    company = association_proxy('load','company')
+    serialize_rules=('-load.trucker','-company')
     
 
 class Company(db.Model, SerializerMixin):
@@ -37,6 +39,8 @@ class Company(db.Model, SerializerMixin):
     phone_number = db.Column(db.String)
 
     load = db.relationship('Load', back_populates='company')
+    truckers = association_proxy('load','trucker')
+    serialize_rules=('-load.company','-trucker')
 
 
 class Load(db.Model, SerializerMixin):
@@ -53,3 +57,5 @@ class Load(db.Model, SerializerMixin):
 
     trucker = db.relationship('Trucker', back_populates='load')
     company = db.relationship('Company', back_populates='load')
+
+    serialize_rules=('-company','-trucker')

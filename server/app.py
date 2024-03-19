@@ -8,12 +8,12 @@ app = create_app()
 bcrypt = Bcrypt(app)
 
 #  ask question about this commnent line below
-app.route('/')
+app.route('/api')
 def index():
     return "Welcome to TruckerInsight"
 
 # Trucker routes
-@app.post('/login/trucker')
+@app.post('/api/login/trucker')
 def login_trucker():
     data = request.json
     username = data['username']
@@ -21,9 +21,11 @@ def login_trucker():
     trucker = Trucker.query.where(Trucker.username == username).first()
     if trucker and bcrypt.check_password_hash(trucker.password, password):
         session['trucker_id'] = trucker.id
-        return trucker.to_dict()
-    
-@app.get('/check_session/trucker')
+        return trucker.to_dict(), 200
+    else:
+        return {}, 401
+
+@app.get('/api/check_session/trucker')
 def check_session_trucker():
     trucker_id = session.get('trucker_id')
     trucker = Trucker.query.where(Trucker.id == trucker_id).first()
@@ -32,12 +34,12 @@ def check_session_trucker():
     else:
         return {}, 200
 
-@app.delete('/logout/trucker')
+@app.delete('/api/logout/trucker')
 def logout_trucker():
     session.pop('trucker_id')
     return {}, 204
 
-@app.get('/trucker')
+@app.get('/api/trucker')
 def get_trucker():
     all_trucker = Trucker.query.all()
     return [ trucker.to_dict() for trucker in all_trucker], 200
@@ -50,7 +52,7 @@ def get_trucker_by_id(id):
     else:
         return{'error': 'Trucker not found'}
     
-@app.post('/trucker')
+@app.post('/api/register/trucker')
 def add_trucker():
     data = request.json
 
@@ -65,7 +67,7 @@ def add_trucker():
     except ValueError as error:
         return {'error': f'{error}'}, 406
     except:
-        return {'error': 'Invalid data'}
+        return {'error': 'Invalid data'}, 406
     
 @app.patch('/trucker/<int:id>')
 def update_trucker(id):
@@ -85,7 +87,7 @@ def update_trucker(id):
     
 # Company routes
     
-@app.post('/login/company')
+@app.post('/api/login/company')
 def login_company():
     data = request.json
     username = data['username']
@@ -95,7 +97,7 @@ def login_company():
         session['company_id'] = company.id
         return company.to_dict()
     
-@app.get('/check_session/company')
+@app.get('/api/check_session/company')
 def check_session_company():
     company_id = session.get('company_id')
     company = Company.query.where(Company.id == company_id).first()
@@ -104,12 +106,12 @@ def check_session_company():
     else:
         return {}, 200
 
-@app.delete('/logout/company')
+@app.delete('/api/logout/company')
 def logout_company():
     session.pop('company_id')
     return {}, 204
 
-@app.get('/company')
+@app.get('/api/company')
 def get_company():
     all_company = Company.query.all()
     return [ company.to_dict() for company in all_company], 200
@@ -122,7 +124,7 @@ def get_company_by_id(id):
     else:
         return {'error': 'Company not found'}
     
-@app.post('/company')
+@app.post('/api/register/company')
 def add_company():
     data = request.json
 
@@ -156,3 +158,5 @@ def update_company(id):
     
 
     
+if __name__ == '__main__':
+    app.run(port=5555, debug=True)

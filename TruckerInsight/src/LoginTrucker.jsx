@@ -10,7 +10,7 @@ function LoginTrucker({ currentUser, setCurrentUser }) {
     async function handleLogin(e) {
         e.preventDefault();
         const userInfo = { username, password };
-        const res = await fetch('/login/trucker', {
+        const res = await fetch('/api/login/trucker', {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',
@@ -21,7 +21,7 @@ function LoginTrucker({ currentUser, setCurrentUser }) {
         if (res.ok) {
             const data = await res.json();
             setCurrentUser(data);
-            navigate('/');
+            navigate('/api');
         } else {
             alert('Invalid log in');
         }
@@ -29,7 +29,7 @@ function LoginTrucker({ currentUser, setCurrentUser }) {
 
     function handleLogout() {
         setCurrentUser(null);
-        fetch('/logout/trucker', { method: 'DELETE' });
+        fetch('/api/logout/trucker', { method: 'DELETE' });
     }
 
     return (

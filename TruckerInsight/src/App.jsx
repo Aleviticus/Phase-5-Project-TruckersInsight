@@ -4,16 +4,20 @@ import Title from "./Title";
 import { Route, Routes} from 'react-router-dom'
 import  LoginCompany from "./LoginCompany";
 import  LoginTrucker from './LoginTrucker'
+import TruckerSignup from "./TruckerSignup";
+import CompanySignup from "./CompanySignup";
 
 
 
 function App(){
   const [currentUser, setCurrentUser] = useState({})
+  const [truckerData, setTruckerData] = useState([])
+  const [companyData, setCompanyData] = useState([])
 
-  const baseURL = '/'
+  const baseURL = '/api'
 
   useEffect(() => {
-    fetch('/check_session')
+    fetch('/api/check_session')
     .then(res => {
       if (res.ok) {
         res.json()
@@ -26,9 +30,11 @@ function App(){
     <div>
       <NavBar></NavBar>
       <Routes>
-        <Route path='/'element={<Title/>}/>
-        <Route path='/login/trucker'element={<LoginTrucker currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
-        <Route path='/login/company'element={<LoginCompany currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
+        <Route path='/api/'element={<Title/>}/>
+        <Route path='/api/register/trucker'element={<TruckerSignup truckerData={truckerData} setTruckerData={setTruckerData}/>}/>
+        <Route path="/api/register/company"element={<CompanySignup companyData={companyData} setCompanyData={setCompanyData}/>}/>
+        <Route path='/api/login/trucker'element={<LoginTrucker currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
+        <Route path='/api/login/company'element={<LoginCompany currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
       </Routes>
     </div>
   )
