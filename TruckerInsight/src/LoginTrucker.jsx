@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "./css/LoginTrucker.css"; 
 
-function LoginTrucker({ currentUser, setCurrentUser }) {
+function LoginTrucker({ currentTrucker, setCurrentTrucker }) {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -20,22 +20,22 @@ function LoginTrucker({ currentUser, setCurrentUser }) {
         });
         if (res.ok) {
             const data = await res.json();
-            setCurrentUser(data);
-            navigate('/api');
+            setCurrentTrucker(data);
+            navigate('/company');
         } else {
             alert('Invalid log in');
         }
     }
 
     function handleLogout() {
-        setCurrentUser(null);
+        setCurrentTrucker(null);
         fetch('/api/logout/trucker', { method: 'DELETE' });
     }
 
     return (
         <div className="container">
             <h1>Trucker Login</h1>
-            {currentUser && <h2>Welcome {currentUser.username}!</h2>}
+            {currentTrucker && <h2>Welcome {currentTrucker.username}!</h2>}
             <button onClick={handleLogout} className="button">Logout</button>
             <form onSubmit={handleLogin} className="form">
                 <label className="label">

@@ -138,7 +138,7 @@ def add_company():
     except ValueError as error:
         return{'error': f'{error}'}, 406
     except:
-        return {'error': 'Invalid data'}
+        return {'error': 'Invalid data'}, 406
 
 @app.patch('/company/<int:id>')
 def update_company(id):

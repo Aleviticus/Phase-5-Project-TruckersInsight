@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './css/LoginCompany.css';
 
-function LoginCompany({ currentUser, setCurrentUser }) {
+function LoginCompany({ currentCompany, setCurrentCompany }) {
     const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -20,22 +20,22 @@ function LoginCompany({ currentUser, setCurrentUser }) {
         });
         if (res.ok) {
             const data = await res.json();
-            setCurrentUser(data);
-            navigate('/api');
+            setCurrentCompany(data);
+            navigate('/trucker');
         } else {
             alert('Invalid log in');
         }
     }
 
     function handleLogout() {
-        setCurrentUser(null);
-        fetch('/logout/company', { method: 'DELETE' });
+        setCurrentCompany(null);
+        fetch('/api/logout/company', { method: 'DELETE' });
     }
     
     return(
         <div className="container">
             <h1>Company Login</h1>
-            {currentUser && <h2>Welcome {currentUser.username}!</h2>}
+            {currentCompany && <h2>Welcome {currentCompany.username}!</h2>}
             <button onClick={handleLogout} className="button">Logout</button>
             <form onSubmit={handleLogin} className="form">
                 <label className="label">

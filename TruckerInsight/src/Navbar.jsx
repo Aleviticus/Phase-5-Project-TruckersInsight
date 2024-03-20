@@ -5,11 +5,11 @@ function Navbar() {
     return (
         <nav>
             <ul>
-                <NavLink to='/api'>Home</NavLink>
-                <NavLink to='/api/register/trucker' className='custom-link'>Trucker Signup</NavLink>
-                <NavLink to='/api/register/company' className='custom-link'>Company Signup</NavLink>
-                <NavLink to='/api/login/trucker' className='custom-link'>Trucker Login</NavLink>
-                <NavLink to='/api/login/company' className='custom-link'>Company Login</NavLink>
+                <NavLink to='/'>Home</NavLink>
+                <NavLink to='/register/trucker' className='custom-link'>Trucker Signup</NavLink>
+                <NavLink to='/register/company' className='custom-link'>Company Signup</NavLink>
+                <NavLink to='/login/trucker' className='custom-link'>Trucker Login</NavLink>
+                <NavLink to='/login/company' className='custom-link'>Company Login</NavLink>
             </ul>
         </nav>
     )

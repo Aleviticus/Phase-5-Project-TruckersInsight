@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0c3a9f73dda5
+Revision ID: 27ec660bdebb
 Revises: 
-Create Date: 2024-03-13 14:47:49.245179
+Create Date: 2024-03-19 16:16:41.965005
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0c3a9f73dda5'
+revision = '27ec660bdebb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,7 +34,7 @@ def upgrade():
     sa.Column('password', sa.String(), nullable=True),
     sa.Column('owner', sa.String(), nullable=True),
     sa.Column('vehicle', sa.String(), nullable=True),
-    sa.Column('trailer', sa.Boolean(), nullable=True),
+    sa.Column('trailer', sa.String(), nullable=True),
     sa.Column('location', sa.String(), nullable=True),
     sa.Column('phone_number', sa.String(), nullable=True),
     sa.Column('years_of_experience', sa.String(), nullable=True),
@@ -43,7 +43,6 @@ def upgrade():
     )
     op.create_table('loads_table',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(), nullable=False),
     sa.Column('dropoff', sa.String(), nullable=True),
     sa.Column('materials', sa.String(), nullable=True),
     sa.Column('weight', sa.Integer(), nullable=True),
@@ -52,8 +51,7 @@ def upgrade():
     sa.Column('company_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['company_id'], ['companies_table.id'], name=op.f('fk_loads_table_company_id_companies_table')),
     sa.ForeignKeyConstraint(['trucker_id'], ['truckers_table.id'], name=op.f('fk_loads_table_trucker_id_truckers_table')),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('username')
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 

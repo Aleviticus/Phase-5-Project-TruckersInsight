@@ -4,6 +4,7 @@ import './css/TruckerSignup.css'
 
 
 function TruckerSignup({ truckerData,setTruckerData }) {
+    console.log(setTruckerData)
 
     const navigate = useNavigate()
     const [formValues, setFormValues] = useState({
@@ -41,7 +42,7 @@ function TruckerSignup({ truckerData,setTruckerData }) {
        })
        .then((res) => {
         if (res.ok) {
-            navigate('/api/login/trucker');
+            navigate('/login/trucker');
         } else {
             throw new Error('Failed to submit the form')
         }
@@ -78,7 +79,7 @@ function TruckerSignup({ truckerData,setTruckerData }) {
                 type="text"
                 value={formValues.trailer}
                 onChange={(e) => setFormValues({ ...formValues, trailer: e.target.value })}
-                placeholder="True or False"
+                placeholder="Trailer"
             />
                 <input 
                 type="text"
