@@ -6,7 +6,7 @@ function CompanyContainer() {
     const [companies, setCompanies] = useState([])
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/api/trucker')
+        fetch('http://127.0.0.1:5555/api/company')
           .then(res => {
             if (res.ok) {
               return res.json();

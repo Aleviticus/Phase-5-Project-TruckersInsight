@@ -14,9 +14,6 @@ import TruckerContainer from "./TruckerContainer";
 function App(){
   const [currentTrucker, setCurrentTrucker] = useState({})
   const [currentCompany, setCurrentCompany] = useState({})
-  // current trucker
-  // current company
-  // send these states down 
   const [truckerData, setTruckerData] = useState([])
   const [companyData, setCompanyData] = useState([])
   const [companies, setCompanies] = useState([])
@@ -46,7 +43,7 @@ function App(){
   }, [])
   return (
     <div>
-      <NavBar></NavBar>
+      <NavBar currentCompany={currentCompany} setCurrentCompany={setCurrentCompany} ></NavBar>
       <Routes>
         <Route path='/'element={<Title/>}/>
         <Route path='/register/trucker'element={<TruckerSignup truckerData={truckerData} setTruckerData={setTruckerData}/>}/>

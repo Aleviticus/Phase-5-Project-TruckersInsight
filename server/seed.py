@@ -17,9 +17,9 @@ if __name__ == '__main__':
 
         print('creating Trucker')
 
-        vehicle = ['Peterbilt 579', 'Peterbilt 389', 'Peterbilt 379', 'Volvo VNL', 'Volvo VNR', 'Kenworth W900', 'Kenworth T800', 'Kenworth T680', 'International RH613', 'Internation 8600' ]
+        vehicle = ['Peterbilt 579', 'Peterbilt 389', 'Peterbilt 379', 'Volvo VNL', 'Volvo VNR', 'Kenworth W900', 'Kenworth T800', 'Kenworth T680', 'International RH613', 'Internationl 8600' ]
 
-        trailer = [True, False]
+        trailer = ['Yes', 'No']
 
         location = ['New York', 'Texas', 'Florida', 'California', 'Maine', 'Virgina', 'Pennsylvania', 'Vermont', 'New Jersey', 'Indiana']
 
@@ -34,9 +34,11 @@ if __name__ == '__main__':
 
         db.session.commit()
 
+        LLC_name = ['Amazon', 'JB Hunt', 'Schneider', 'Prime INC', 'FedEx', 'USPS', 'Knight', 'Landstar', 'XPO', 'YRC', 'Ryder', 'Werner', 'KLLM' ]
+
         print('creating company')
         for _ in range(20):
-            c = Company(username=faker.name(), password=faker.password(),company_name=faker.name(), location=faker.address(), phone_number=faker.phone_number(),)
+            c = Company(username=faker.name(), password=faker.password(),company_name=random_choice(LLC_name), location=faker.address(), phone_number=faker.phone_number(),)
             db.session.add(c)
         
         db.session.commit()

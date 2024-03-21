@@ -156,7 +156,8 @@ def update_company(id):
     else:
         return {'error': "Company not found"}
     
-
+# setting up my connect for truckers and company 
+    
     
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

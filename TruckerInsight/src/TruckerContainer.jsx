@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react'
 import React from 'react'
 import TruckerCard from './TruckerCard';
+import Search from './Search';
 
-function TruckerContainer() {
+function TruckerContainer({}) {
     const [truckers, setTruckers] = useState([])
+    
 
     useEffect(() => {
         fetch('http://127.0.0.1:5555/api/trucker')
