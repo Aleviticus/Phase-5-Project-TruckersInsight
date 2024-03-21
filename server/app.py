@@ -37,6 +37,7 @@ def check_session_trucker():
 @app.delete('/api/logout/trucker')
 def logout_trucker():
     session.pop('trucker_id')
+    # make 1 universal logout feature
     return {}, 204
 
 @app.get('/api/trucker')

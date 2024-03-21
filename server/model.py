@@ -59,3 +59,7 @@ class Load(db.Model, SerializerMixin):
     company = db.relationship('Company', back_populates='load')
 
     serialize_rules=('-company','-trucker')
+
+# add a connect model table
+        # trucker_id
+        # company_id
