@@ -157,6 +157,8 @@ def update_company(id):
     else:
         return {'error': "Company not found"}
     
+# Load Routes
+    
 @app.get('/load/<int:id>')
 def get_load_by_id(id):
     found_load = Load.query.where(Load.id == id).first()
@@ -191,6 +193,10 @@ def add_load():
 def get_connect():
     all_connect = Connect.query.all()
     return [ connect.to_dict() for connect in all_connect], 200 
+
+# @app.get('/api/connect/trucker')
+# def get_current_trucker():
+
 
 @app.post('/api/connect')
 def add_connect():

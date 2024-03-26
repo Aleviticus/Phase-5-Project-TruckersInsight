@@ -9,7 +9,7 @@ import CompanySignup from "./CompanySignup";
 import CompanyContainer from "./CompanyContainer";
 import TruckerContainer from "./TruckerContainer";
 import LoadContainer from "./LoadContainer";
-import CompanyCard from "./CompanyCard";
+import Connect from "./Connect";
 
 
 function App(){
@@ -17,7 +17,7 @@ function App(){
   const [currentCompany, setCurrentCompany] = useState({})
   const [truckerData, setTruckerData] = useState([])
   const [companyData, setCompanyData] = useState([])
-  const [companies, setCompanies] = useState([])
+  console.log(currentTrucker)
 
   const baseURL = '/api'
 
@@ -54,7 +54,7 @@ function App(){
         <Route path='/login/company'element={<LoginCompany currentCompany={currentCompany} setCurrentCompany={setCurrentCompany}/>}/>
         <Route path='/company'element={<CompanyContainer currentTrucker={currentTrucker} setCurrentTrucker={setCurrentTrucker}/>}/>
         <Route path='/trucker'element={<TruckerContainer currentCompany={currentCompany} setCurrentCompany={setCurrentCompany}/>}/>
-        <Route path='/myconnect' element={<CompanyCard currentCompany={currentCompany} setCurrentCompany={setCurrentCompany} currentTrucker={currentTrucker} setCurrentTrucker={setCurrentTrucker}/>}/>
+        <Route path='/myconnect'element={<Connect currentTrucker={currentTrucker} setCurrentTrucker={setCurrentTrucker}/>}/>
         <Route path='/load'element={<LoadContainer/>}/>
       </Routes>
     </div>

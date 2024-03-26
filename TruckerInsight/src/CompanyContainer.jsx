@@ -2,7 +2,7 @@ import React from 'react'
 import CompanyCard from './CompanyCard'
 import { useState, useEffect } from 'react'
 
-function CompanyContainer() {
+function CompanyContainer({currentTrucker}) {
     const [companies, setCompanies] = useState([])
 
     useEffect(() => {
@@ -27,6 +27,8 @@ function CompanyContainer() {
                     company_name={company.company_name}
                     location={company.location}
                     phone_number={company.phone_number}
+                    company_id={company.id}
+                    currentTrucker={currentTrucker}
                 />
             ))
         }

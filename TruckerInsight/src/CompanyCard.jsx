@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react'
 import './css/CompanyCard.css'
 import { useNavigate } from 'react-router-dom';
 
-function CompanyCard({company_name, location, phone_number, currentTrucker, currentCompany}) {
+function CompanyCard({company_name, location, phone_number, currentTrucker, currentCompany, company_id}) {
 
     const navigate=useNavigate()
     
     function handleClick(e) {
+        console.log(currentTrucker)
         e.preventDefault();
-        const connectInfo = { currentTrucker, currentCompany };
+        const connectInfo = { trucker_id:currentTrucker.id, company_id:company_id};
+        
         fetch('/api/connect', {
             method:'POST',
             headers: {
@@ -42,19 +44,3 @@ function CompanyCard({company_name, location, phone_number, currentTrucker, curr
 }
 
 export default CompanyCard
-// useEffect (() => {
-//     fetch('http://127.0.0.1:5555/api/company')
-//     .then(res => {
-//       if (res.ok) {
-//         return res.json()
-//       }
-//       throw new Error('Network response was not ok')
-//     })
-//     .then(data => {
-//       console.log(data)
-//       setCompanies(data)
-//     })
-//     .catch(error => console.error)
-//   }, [])
-
-// card is the child of the container
