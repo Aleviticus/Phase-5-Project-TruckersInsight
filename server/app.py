@@ -1,5 +1,5 @@
 from flask import request, session
-from model import db, Trucker, Company, Load
+from model import db, Trucker, Company, Load, Connect
 from flask_bcrypt import Bcrypt
 
 from config import create_app, db
@@ -187,6 +187,26 @@ def add_load():
     
     
 # setting up my connect for truckers and company 
+@app.get('/api/connect')
+def get_connect():
+    all_connect = Connect.query.all()
+    return [ connect.to_dict() for connect in all_connect], 200 
+
+@app.post('/api/connect')
+def add_connect():
+    data = request.json
+
+    try:
+        new_connect=Connect(trucker_id=data.get('trucker_id'), company_id=data.get('company_id'))
+        db.session.add(new_connect)
+        db.session.commit()
+        return new_connect.to_dict(), 201
+    
+    except ValueError as error:
+        return{'error': f'{error}'}, 406
+    except:
+        return {'error': 'Invalid data'}, 406
+
     
     
 if __name__ == '__main__':

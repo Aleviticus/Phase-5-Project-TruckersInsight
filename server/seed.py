@@ -1,5 +1,5 @@
 from app import app
-from model import db, Trucker, Company, Load
+from model import db, Trucker, Company, Load, Connect
 from faker import Faker
 from random import choice as random_choice
 
@@ -14,6 +14,7 @@ if __name__ == '__main__':
         Trucker.query.delete()
         Company.query.delete()
         Load.query.delete()
+        Connect.query.delete()
 
         print('creating Trucker')
 
@@ -28,7 +29,7 @@ if __name__ == '__main__':
         years_of_experience = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
         # trying out faker address
-        for _ in range(9):
+        for _ in range(20):
             t = Trucker(username=faker.name(), password=faker.password(), owner=faker.name(), vehicle=random_choice(vehicle), trailer=random_choice(trailer), location=random_choice(location), phone_number=faker.phone_number(), years_of_experience=random_choice(years_of_experience))
             db.session.add(t)
 
@@ -45,7 +46,7 @@ if __name__ == '__main__':
 
         print('creating load')
 
-        materials = ['baby food', 'supplies', 'food', 'hardware', 'pakages']
+        materials = ['baby food', 'supplies', 'food', 'hardware', 'packages', "batteries", 'car parts']
 
         weight = ['23,000', '36,000', '40,000', '25,000', '80,000']
 
@@ -55,9 +56,19 @@ if __name__ == '__main__':
         companies = Company.query.all()
 
 
-        for _ in range(30):
+        for _ in range(50):
             l = Load(pickup=faker.address(), dropoff=faker.address(), materials=random_choice(materials), weight=random_choice(weight), payout=random_choice(payout),trucker_id=random_choice(truckers).id, company_id=random_choice(companies).id)
             db.session.add(l)
 
         db.session.commit()
+
+        truckers = Trucker.query.all()
+        companies = Company.query.all()
+
+        for _ in range(20):
+            c = Connect(trucker_id=random_choice(truckers).id,company_id=random_choice(companies).id)
+            db.session.add(c)
+
+        db.session.commit()
+
 

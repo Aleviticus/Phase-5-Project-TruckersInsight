@@ -9,6 +9,7 @@ import CompanySignup from "./CompanySignup";
 import CompanyContainer from "./CompanyContainer";
 import TruckerContainer from "./TruckerContainer";
 import LoadContainer from "./LoadContainer";
+import CompanyCard from "./CompanyCard";
 
 
 function App(){
@@ -53,6 +54,7 @@ function App(){
         <Route path='/login/company'element={<LoginCompany currentCompany={currentCompany} setCurrentCompany={setCurrentCompany}/>}/>
         <Route path='/company'element={<CompanyContainer currentTrucker={currentTrucker} setCurrentTrucker={setCurrentTrucker}/>}/>
         <Route path='/trucker'element={<TruckerContainer currentCompany={currentCompany} setCurrentCompany={setCurrentCompany}/>}/>
+        <Route path='/myconnect' element={<CompanyCard currentCompany={currentCompany} setCurrentCompany={setCurrentCompany} currentTrucker={currentTrucker} setCurrentTrucker={setCurrentTrucker}/>}/>
         <Route path='/load'element={<LoadContainer/>}/>
       </Routes>
     </div>
