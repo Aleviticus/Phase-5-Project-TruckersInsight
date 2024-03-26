@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
 
         for _ in range(30):
-            l = Load(dropoff=faker.address(), materials=random_choice(materials), weight=random_choice(weight), payout=random_choice(payout),trucker_id=random_choice(truckers).id, company_id=random_choice(companies).id)
+            l = Load(pickup=faker.address(), dropoff=faker.address(), materials=random_choice(materials), weight=random_choice(weight), payout=random_choice(payout),trucker_id=random_choice(truckers).id, company_id=random_choice(companies).id)
             db.session.add(l)
 
         db.session.commit()

@@ -1,0 +1,27 @@
+/* .title {
+    text-align: center;
+    font-size: 48px;
+    color: #34495e;
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+} */
+
+.title {
+    text-align: center;
+    font-size: 50px;
+    color: #e74c3c;
+    /* margin-top: 20px; Removed to allow flexbox to center it vertically */
+    font-family: 'Helvetica', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+/* .title {
+    text-align: center;
+    font-size: 46px;
+    color: #2c3e50;
+    margin-top: 20px;
+    font-family: 'Times New Roman', serif;
+    border-bottom: 2px solid #2c3e50;
+    display: inline-block;
+    padding-bottom: 5px;
+} */

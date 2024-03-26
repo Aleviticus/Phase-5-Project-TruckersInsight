@@ -1,0 +1,24 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Vibrant gradient background */
+  }
+  
+  .trucker-card {
+    flex-basis: calc(33.333% - 20px); /* Adjust card width, accounting for gap */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.2s; /* Smooth transform effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+  }
+  
+  .trucker-card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* more pronounced shadow on hover */
+  }
+  

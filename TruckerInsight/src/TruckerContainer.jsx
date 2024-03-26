@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import React from 'react'
 import TruckerCard from './TruckerCard';
-import Search from './Search';
 
 function TruckerContainer({}) {
     const [truckers, setTruckers] = useState([])

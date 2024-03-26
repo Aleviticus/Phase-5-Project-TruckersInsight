@@ -8,8 +8,7 @@ import TruckerSignup from "./TruckerSignup";
 import CompanySignup from "./CompanySignup";
 import CompanyContainer from "./CompanyContainer";
 import TruckerContainer from "./TruckerContainer";
-import LogoutTrucker from "./LogoutTrucker";
-
+import LoadContainer from "./LoadContainer";
 
 
 function App(){
@@ -42,9 +41,10 @@ function App(){
     })
 
   }, [])
+  
   return (
     <div>
-      <NavBar currentCompany={currentCompany} currentTrucker={currentTrucker}></NavBar>
+      <NavBar currentCompany={currentCompany} currentTrucker={currentTrucker} setCurrentTrucker={setCurrentTrucker} setCurrentCompany={setCurrentCompany}></NavBar>
       <Routes>
         <Route path='/'element={<Title/>}/>
         <Route path='/register/trucker'element={<TruckerSignup truckerData={truckerData} setTruckerData={setTruckerData}/>}/>
@@ -53,7 +53,7 @@ function App(){
         <Route path='/login/company'element={<LoginCompany currentCompany={currentCompany} setCurrentCompany={setCurrentCompany}/>}/>
         <Route path='/company'element={<CompanyContainer currentTrucker={currentTrucker} setCurrentTrucker={setCurrentTrucker}/>}/>
         <Route path='/trucker'element={<TruckerContainer currentCompany={currentCompany} setCurrentCompany={setCurrentCompany}/>}/>
-
+        <Route path='/load'element={<LoadContainer/>}/>
       </Routes>
     </div>
   )

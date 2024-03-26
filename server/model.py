@@ -47,7 +47,7 @@ class Load(db.Model, SerializerMixin):
     __tablename__ = 'loads_table'
 
     id = db.Column(db.Integer, primary_key=True)
-    # username = db.Column(db.String, unique=True, nullable=False)
+    pickup = db.Column(db.String)
     dropoff = db.Column(db.String)
     materials = db.Column(db.String)
     weight = db.Column(db.Integer)

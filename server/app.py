@@ -157,6 +157,35 @@ def update_company(id):
     else:
         return {'error': "Company not found"}
     
+@app.get('/load/<int:id>')
+def get_load_by_id(id):
+    found_load = Load.query.where(Load.id == id).first()
+    if found_load:
+        return found_load.to_dict(), 200
+    else:
+        return {'error': 'Load not found'}
+    
+@app.get('/api/load')
+def get_load():
+    all_load = Load.query.all()
+    return [ load.to_dict() for load in all_load], 200
+
+@app.post('/api/post/load')
+def add_load():
+    data = request.json
+
+    try:
+        new_load = Load(pickup=data.get('pickup'), dropoff=data.get('dropoff'), materials=data.get('materials'), weight=data.get('weight'), payout=data.get('payout')) 
+        db.session.add(new_load)
+        db.session.commit()
+        return new_load.to_dict(), 201
+    
+    except ValueError as error:
+        return{'error': f'{error}'}, 406
+    except:
+        return {'error': 'Invalid data'}, 406
+    
+    
 # setting up my connect for truckers and company 
     
     
