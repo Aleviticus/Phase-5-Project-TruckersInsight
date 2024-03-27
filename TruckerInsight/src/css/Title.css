@@ -1,27 +1,21 @@
-/* .title {
-    text-align: center;
-    font-size: 48px;
-    color: #34495e;
-    margin-top: 20px;
-    font-family: 'Arial', sans-serif;
-} */
-
-.title {
-    text-align: center;
-    font-size: 50px;
-    color: #e74c3c;
-    /* margin-top: 20px; Removed to allow flexbox to center it vertically */
-    font-family: 'Helvetica', sans-serif;
-    text-shadow: 2px 2px 4px #000000;
-}
-
-/* .title {
-    text-align: center;
-    font-size: 46px;
-    color: #2c3e50;
-    margin-top: 20px;
-    font-family: 'Times New Roman', serif;
-    border-bottom: 2px solid #2c3e50;
-    display: inline-block;
-    padding-bottom: 5px;
-} */
+/* Title.css */
+@keyframes move {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(-10px); }
+  }
+  
+  .title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust the height as needed, 100vh will take the full height of the viewport */
+    animation: move 2s ease-in-out infinite;
+  }
+  
+  .title {
+    font-size: 2rem; /* Adjust the font size as needed */
+    color: #333; /* Adjust the color as needed */
+    /* Additional styling for your title */
+  }
+  

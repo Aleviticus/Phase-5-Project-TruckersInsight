@@ -69,6 +69,12 @@ function TruckerSignup({ truckerData,setTruckerData }) {
                     onChange={(e) => setFormValues({...formValues, password: e.target.value})}
                     placeholder='Password'
             />
+            <input
+                type="text"
+                value={formValues.owner}
+                onChange={(e) => setFormValues({...formValues, owner: e.target.value})}
+                placeholder='Owner'
+            />
                 <input 
                 type="text"
                 value={formValues.vehicle}
