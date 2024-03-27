@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function TruckerCard({owner, vehicle, trailer, location, phone_number, years_of_experience}) {
+function TruckerCard({owner, vehicle, trailer, location, phone_number, years_of_experience, currentCompany}) {
     const [isConnect, setIsConnect] = useState(true)
 
     function handleClick() {

@@ -1,5 +1,5 @@
 from flask import request, session
-from model import db, Trucker, Company, Load
+from model import db, Trucker, Company, Load, Connect
 from flask_bcrypt import Bcrypt
 
 from config import create_app, db
@@ -157,7 +157,62 @@ def update_company(id):
     else:
         return {'error': "Company not found"}
     
+# Load Routes
+    
+@app.get('/load/<int:id>')
+def get_load_by_id(id):
+    found_load = Load.query.where(Load.id == id).first()
+    if found_load:
+        return found_load.to_dict(), 200
+    else:
+        return {'error': 'Load not found'}
+    
+@app.get('/api/load')
+def get_load():
+    all_load = Load.query.all()
+    return [ load.to_dict() for load in all_load], 200
+
+@app.post('/api/post/load')
+def add_load():
+    data = request.json
+
+    try:
+        new_load = Load(pickup=data.get('pickup'), dropoff=data.get('dropoff'), materials=data.get('materials'), weight=data.get('weight'), payout=data.get('payout')) 
+        db.session.add(new_load)
+        db.session.commit()
+        return new_load.to_dict(), 201
+    
+    except ValueError as error:
+        return{'error': f'{error}'}, 406
+    except:
+        return {'error': 'Invalid data'}, 406
+    
+    
 # setting up my connect for truckers and company 
+@app.get('/api/connect')
+def get_connect():
+    all_connect = Connect.query.all()
+    return [ connect.to_dict() for connect in all_connect], 200 
+
+# @app.get('/api/connect/trucker')
+# def get_current_trucker():
+
+
+@app.post('/api/connect')
+def add_connect():
+    data = request.json
+
+    try:
+        new_connect=Connect(trucker_id=data.get('trucker_id'), company_id=data.get('company_id'))
+        db.session.add(new_connect)
+        db.session.commit()
+        return new_connect.to_dict(), 201
+    
+    except ValueError as error:
+        return{'error': f'{error}'}, 406
+    except:
+        return {'error': 'Invalid data'}, 406
+
     
     
 if __name__ == '__main__':

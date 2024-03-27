@@ -2,8 +2,9 @@ import React from 'react'
 import CompanyCard from './CompanyCard'
 import { useState, useEffect } from 'react'
 
-function CompanyContainer() {
+function CompanyContainer({currentTrucker}) {
     const [companies, setCompanies] = useState([])
+    console.log(currentTrucker)
 
     useEffect(() => {
         fetch('http://127.0.0.1:5555/api/company')
@@ -18,7 +19,7 @@ function CompanyContainer() {
           })
           .catch(error => console.error("Error fetching data:", error));
       }, []);
-
+          console.log(currentTrucker)
     return (
         <ul className='card-container'>
             {companies.map((company) =>(
@@ -27,6 +28,8 @@ function CompanyContainer() {
                     company_name={company.company_name}
                     location={company.location}
                     phone_number={company.phone_number}
+                    company_id={company.id}
+                    currentTrucker={currentTrucker}
                 />
             ))
         }

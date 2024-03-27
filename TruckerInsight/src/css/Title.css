@@ -1,0 +1,21 @@
+/* Title.css */
+@keyframes move {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(-10px); }
+  }
+  
+  .title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust the height as needed, 100vh will take the full height of the viewport */
+    animation: move 2s ease-in-out infinite;
+  }
+  
+  .title {
+    font-size: 2rem; /* Adjust the font size as needed */
+    color: #333; /* Adjust the color as needed */
+    /* Additional styling for your title */
+  }
+  

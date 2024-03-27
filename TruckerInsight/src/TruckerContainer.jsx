@@ -1,9 +1,8 @@
 import {useState, useEffect} from 'react'
 import React from 'react'
 import TruckerCard from './TruckerCard';
-import Search from './Search';
 
-function TruckerContainer({}) {
+function TruckerContainer({currentCompany}) {
     const [truckers, setTruckers] = useState([])
     
 
@@ -31,6 +30,8 @@ function TruckerContainer({}) {
                     location={trucker.location}
                     phone_number={trucker.phone_number}
                     years_of_experience={trucker.years_of_experience}
+                    trucker_id={trucker.id}
+                    currentCompany={currentCompany}
                 />
             ))
         }

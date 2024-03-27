@@ -24,6 +24,8 @@ class Trucker(db.Model, SerializerMixin):
     years_of_experience = db.Column(db.String)
 
     load = db.relationship('Load', back_populates='trucker')
+    connect = db.relationship('Connect', back_populates='trucker')
+
     company = association_proxy('load','company')
     serialize_rules=('-load.trucker','-company')
     
@@ -39,6 +41,7 @@ class Company(db.Model, SerializerMixin):
     phone_number = db.Column(db.String)
 
     load = db.relationship('Load', back_populates='company')
+    connect = db.relationship('Connect', back_populates='company')
     truckers = association_proxy('load','trucker')
     serialize_rules=('-load.company','-trucker')
 
@@ -47,7 +50,7 @@ class Load(db.Model, SerializerMixin):
     __tablename__ = 'loads_table'
 
     id = db.Column(db.Integer, primary_key=True)
-    # username = db.Column(db.String, unique=True, nullable=False)
+    pickup = db.Column(db.String)
     dropoff = db.Column(db.String)
     materials = db.Column(db.String)
     weight = db.Column(db.Integer)
@@ -63,3 +66,17 @@ class Load(db.Model, SerializerMixin):
 # add a connect model table
         # trucker_id
         # company_id
+    
+class Connect(db.Model, SerializerMixin):
+    __tablename__ = 'connect_table'
+
+    id = db.Column(db.Integer, primary_key=True)
+    trucker_id = db.Column(db.Integer, db.ForeignKey('truckers_table.id'))
+    company_id = db.Column(db.Integer, db.ForeignKey('companies_table.id'))
+
+    trucker = db.relationship('Trucker', back_populates='connect')
+    company = db.relationship('Company', back_populates='connect')
+
+    serialize_rules=('-company.connect', '-trucker.connect')
+    
+
