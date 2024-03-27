@@ -10,6 +10,7 @@ import CompanyContainer from "./CompanyContainer";
 import TruckerContainer from "./TruckerContainer";
 import LoadContainer from "./LoadContainer";
 import Connect from "./Connect";
+// import ConnectTrucker from "./ConnectTruckers";
 
 
 function App(){
@@ -17,7 +18,7 @@ function App(){
   const [currentCompany, setCurrentCompany] = useState({})
   const [truckerData, setTruckerData] = useState([])
   const [companyData, setCompanyData] = useState([])
-  console.log(currentTrucker)
+  // console.log(currentTrucker)
 
   const baseURL = '/api'
 

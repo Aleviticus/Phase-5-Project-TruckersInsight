@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 
 function CompanyContainer({currentTrucker}) {
     const [companies, setCompanies] = useState([])
+    console.log(currentTrucker)
 
     useEffect(() => {
         fetch('http://127.0.0.1:5555/api/company')
@@ -18,7 +19,7 @@ function CompanyContainer({currentTrucker}) {
           })
           .catch(error => console.error("Error fetching data:", error));
       }, []);
-
+          console.log(currentTrucker)
     return (
         <ul className='card-container'>
             {companies.map((company) =>(

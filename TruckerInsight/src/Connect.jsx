@@ -3,6 +3,7 @@ import { useState, useEffect} from 'react'
 import CompanyCard from './CompanyCard'
 
 function Connect({currentTrucker}) {
+    console.log(currentTrucker)
 
     const [connect, setConnect] = useState([])
 
@@ -15,6 +16,7 @@ function Connect({currentTrucker}) {
             }
         })
     }, [])
+    console.log(connect)
 
     return (
         <div className='connect-card'>

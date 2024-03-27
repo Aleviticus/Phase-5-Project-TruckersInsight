@@ -31,6 +31,7 @@ function TruckerContainer({currentCompany}) {
                     phone_number={trucker.phone_number}
                     years_of_experience={trucker.years_of_experience}
                     trucker_id={trucker.id}
+                    currentCompany={currentCompany}
                 />
             ))
         }
